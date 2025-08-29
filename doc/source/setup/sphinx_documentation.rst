@@ -9,13 +9,14 @@ This guide explains how to set up and build Sphinx documentation for your projec
 Prerequisites
 -------------
 
-- **Python** (version 3.7 or higher recommended)
+- **Python** (version 3.11 or higher recommended)
 - **pip** (Python package manager)
 
 Install Sphinx
 --------------
 
-First, install Sphinx in your Python environment (or the requirements file):
+If not already done installing the ``requirements.txt`` dependencies, install Sphinx in your
+Python environment:
 
 .. code-block:: bash
 
@@ -25,7 +26,7 @@ Install any additional themes, for example:
 
 .. code-block:: bash
 
-    pip install sphinx-rtd-theme
+    pip3 install sphinx-rtd-theme
 
 Create the Sphinx Documentation Skeleton
 -----------------------------------------
@@ -43,7 +44,7 @@ This command will:
 - Create the initial ``index.rst`` file
 
 When prompted, you can accept defaults or customize settings (project name, author, version, etc.). It is
-**recommended** to use different folders for sources and build files
+**recommended** to use different folders for sources and build files althoug by default is not done
 
 Building the HTML Documentation
 --------------------------------

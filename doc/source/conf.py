@@ -25,6 +25,7 @@ extensions = [
     'sphinx.ext.duration',
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
+    'sphinx.ext.todo',
 ]
 
 templates_path = ['_templates']
@@ -34,6 +35,8 @@ highlight_language = 'default'    # or 'python', doesn't affect SQL blocks
 pygments_style = 'sphinx'         # or another theme like 'monokai'
 pygments_dark_style = "native"    # good for Furo's dark mode
 autodoc_member_order = 'bysource' # Keep attrs and functions order when generating the docs
+todo_include_todos = True         # Display todos by setting to True
+
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

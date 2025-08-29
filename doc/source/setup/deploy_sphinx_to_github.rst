@@ -54,6 +54,9 @@ follow these steps:
     - Set the **Source** to **Deploy from a branch**.
     - Select **Branch: gh-pages** and the **root** folder.
 
+    **Important:** If there is no gh_pages branch you **have to push the yaml ``documentation.yml`` file**
+    then it will appear
+
 
 3. **Access the published documentation**
 
@@ -61,7 +64,7 @@ follow these steps:
 
     The published site will be available at:
 
-    `<https://jaumefigueras.github.io/GisFIRE2/>`_
+    `<https://blopup-upc.github.io/blopup-winapp2/>`_
 
 References
 ----------

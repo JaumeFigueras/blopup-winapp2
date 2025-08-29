@@ -1,52 +1,27 @@
 Python Virtual Environment
 ==========================
 
-GisFIRE2 provides plugins for QGIS, so a dedicated Python virtual environment is required to ensure compatibility with QGIS imports.
-On Linux, this can be done by creating a temporary virtual environment to install the necessary tools, and then using the QGIS virtual environment creation utility.
+BLOPUP runs on a dedicated Python virtual environment that is required to ensure
+that all librearies are isolated and do not cause conflicts with other existing
+software. This virtual environment is needed to both users and developers.
 
 Steps
 -----
 
-1. **Create a temporary virtual environment**
+1. **Create virtual environment**
 
-    This environment will be used only to install the QGIS virtual environment creation tool.
-
-    .. code-block:: bash
-
-      python3 -m venv tmp_venv
-
-2. **Activate the temporary virtual environment**
+    This environment will be used in the project. If the IDE you are using does not provide
+    automatic tools to create the virtual environment you can do it manually.
 
     .. code-block:: bash
 
-      source tmp_venv/bin/activate
+      python3 -m venv .venv
 
-3. **Install the QGIS virtual environment creation tool**
+    For **PyCharm**, go to:
 
-    .. code-block:: bash
+    `File → Settings → Python → Interpreter` and create the isolated new virtual environment
 
-      pip3 install qgis-venv-creator
-
-4. **Generate the QGIS-compatible virtual environment**
-
-    Change to your GisFIRE2 project directory, then run:
-
-    .. code-block:: bash
-
-      create-qgis-venv --venv-name .venv
-
-5. **Clean up and configure your IDE**
-
-    Once the process is complete:
-
-    - You may delete the temporary virtual environment (`tmp_venv`).
-    - Configure your preferred IDE to use the new `.venv` interpreter.
-
-     For **PyCharm**, go to:
-
-     `File → Settings → Python → Interpreter` and select the `.venv` path.
-
-6. **Install regular dependencies**
+2. **Install regular dependencies**
 
     When all is setup the dependencies can be installed with:
 
@@ -57,5 +32,4 @@ Steps
 References
 ----------
 
-- `Creating a Python Virtual Environment for PyQGIS Development with VS Code on Windows <https://blog.geotribu.net/2024/11/25/creating-a-python-virtual-environment-for-pyqgis-development-with-vs-code-on-windows/>`_
-- `qgis-venv-creator GitHub Repository <https://github.com/GispoCoding/qgis-venv-creator>`_
+- `Python Virtual Environments <https://docs.python.org/3/library/venv.html>`_
