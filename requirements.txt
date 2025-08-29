@@ -1,0 +1,10 @@
+# Docs system
+sphinx>=8.2.3
+sphinx-rtd-theme>=3.0.2
+Pygments>=2.19.2
+# Project dependencies
+SQLAlchemy>=2.0.43
+# Testing dependencies
+pytest>=8.1.1
+pytest-cov>=4.1.0
+requests-mock>=1.12.1
