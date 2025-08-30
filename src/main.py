@@ -34,37 +34,33 @@ from typing import Dict
 from typing import Any
 from typing import Optional
 
-from src.ui.about import DlgAbout
-from src.ui.settings import DlgSettings
-from src.ui.patient import DlgPatient
-from src.ui.login import DlgLogin
-from src.ui.search_patient import DlgSearchPatient
-from src.data_models.patient import Patient
-from src.data_models.user import User
-from src.data_models.location import Location
-from src.data_models.patient_identifier_type import PatientIdentifierType
-from src.data_models.patient_identifier import PatientIdentifier
-from src.data_models.patient_identifier import IdentifierCategory
-from src.data_models import Base
-from src.data_models.person import Person
-from src.data_models.person_name import PersonName
-from src.data_models.person_attribute_type import PersonAttributeType
-from src.data_models.person_attribute import PersonAttribute
-from src.data_models.person_address import PersonAddress
-from src.data_models.categories.person_attributes_categories import GenderCategory
-from src.data_models.visit_type import VisitType
-from src.remote_api.open_mrs_api import login
-from src.remote_api.open_mrs_api import logout
-from src.remote_api.open_mrs_api import get_locations
-from src.remote_api.open_mrs_api import get_patient_identifier_type_list
-from src.remote_api.open_mrs_api import get_visit_type_list
-from src.remote_api.open_mrs_api import get_patient
-from src.remote_api.open_mrs_api import get_visit_list
-# from src.remote_api.open_mrs_api import get_patient_full_name
-# from src.remote_api.open_mrs_api import get_patient_full_address
-# from src.remote_api.open_mrs_api import get_patient_identifiers
+# from src.ui.about import DlgAbout
+# from src.ui.settings import DlgSettings
+# from src.ui.patient import DlgPatient
+# from src.ui.login import DlgLogin
+# from src.ui.search_patient import DlgSearchPatient
+# from src.data_models.patient import Patient
+# from src.data_models.user import User
+# from src.data_models.location import Location
+# from src.data_models.patient_identifier_type import PatientIdentifierType
+# from src.data_models.patient_identifier import PatientIdentifier
+# from src.data_models.patient_identifier import IdentifierCategory
+# from src.data_models import Base
+# from src.data_models.person import Person
+# from src.data_models.person_name import PersonName
+# from src.data_models.person_attribute_type import PersonAttributeType
+# from src.data_models.person_attribute import PersonAttribute
+# from src.data_models.person_address import PersonAddress
+# from src.data_models.categories.person_attributes_categories import GenderCategory
+# from src.data_models.visit_type import VisitType
+# from src.remote_api.open_mrs_api import login
+# from src.remote_api.open_mrs_api import logout
+# from src.remote_api.open_mrs_api import get_locations
+# from src.remote_api.open_mrs_api import get_patient_identifier_type_list
+# from src.remote_api.open_mrs_api import get_visit_type_list
+# from src.remote_api.open_mrs_api import get_patient
+# from src.remote_api.open_mrs_api import get_visit_list
 
-from sqlalchemy import create_engine
 
 if platform.system() == 'Windows':  # pragma: no cover
     import clr  # noqa due to .NET call
@@ -81,96 +77,60 @@ if platform.system() == 'Windows':  # pragma: no cover
 
 VERSION = "0.9.0"
 
-from sqlalchemy.schema import CreateTable
-print(Base.metadata.tables.keys())
-e = create_engine('sqlite://')
-Base.metadata.create_all(e)
-print(CreateTable(PersonAttributeType.__table__).compile(e))
-print(CreateTable(Person.__table__).compile(e))
-print(CreateTable(PersonName.__table__).compile(e))
-print(CreateTable(PersonAddress.__table__).compile(e))
-print(CreateTable(PersonAttribute.__table__).compile(e))
-print(CreateTable(User.__table__).compile(e))
-print(CreateTable(Location.__table__).compile(e))
-print(CreateTable(Patient.__table__).compile(e))
-print(CreateTable(PatientIdentifier.__table__).compile(e))
-print(CreateTable(PatientIdentifierType.__table__).compile(e))
-
-
 class MainWindow(QMainWindow):
-    """Classe que implementa el contenidor principal de l'aplicació. Conté totes les referències a els objectes gràfics
-    de QT i implementa els menus de l'aplicació i la gestió de la informació entre els diferents quadres de diàleg.
-
-    S'utilitza QT v5 com a interfície gràfica...
-
-    Attributes
-    ----------
-    menu_main: QMenuBar
-        Conté la barra de menus de QT per l'aplicació.
-    tool_bar_main: QToolBar
-        Conté la barra d'eines de QT per l'aplicació.
-
-    """
-
-    # Elements automatically created when uic loads the GUI
+    # Elements automatically created when uic loads the main window UI
     menu_main: QMenuBar
     tool_bar_main: QToolBar
     status_main: QStatusBar
     label_status_network: QLabel
     label_status_user: QLabel
-    label_status_database: QLabel # TODO: Remove
     # Variable to hold Dialogs and Message boxes during its visible state
-    dlg: Union[DlgPatient, DlgSettings, DlgLogin, DlgSearchPatient, None] = None
+    # dlg: Union[DlgPatient, DlgSettings, DlgLogin, DlgSearchPatient, None] = None
     msg: Union[QMessageBox, None] = None
     # Current application user
-    current_user: Union[User, None] = None
-    current_location: Union[Location, None] = None
-    current_patient_identifier_types: Union[Dict[str, PatientIdentifierType], None] = None
-    current_visit_types: Union[Dict[str, VisitType], None] = None
-    locations: Union[Dict[str, Location], None] = None
-    patient_identifiers: Union[Dict[str, PatientIdentifier], None] = None
-    locations_by_uuid: Union[Dict[str, Location], None] = None
+    # current_user: Union[User, None] = None
+    # current_location: Union[Location, None] = None
+    # current_patient_identifier_types: Union[Dict[str, PatientIdentifierType], None] = None
+    # current_visit_types: Union[Dict[str, VisitType], None] = None
+    # locations: Union[Dict[str, Location], None] = None
+    # patient_identifiers: Union[Dict[str, PatientIdentifier], None] = None
+    # locations_by_uuid: Union[Dict[str, Location], None] = None
 
     def __init__(self) -> None:
-        """
-        Initialization function. Call super init and load the UI file
-
-        :return: None
-        """
-        super(MainWindow, self).__init__()
+        super().__init__()
         # Load the main window GUI
         current_dir = pathlib.Path(__file__).parent.resolve()
         uic.loadUi(str(current_dir) + '/ui/main_window.ui', self)
         # Widgets (menus and toolbar buttons) needed to manage the main GUI
-        self.menu_action_login: Union[None, QAction] = None
-        self.toolbar_action_login: Union[None, QAction] = None
-        self.menu_action_logout: Union[None, QAction] = None
-        self.toolbar_action_logout: Union[None, QAction] = None
-        self.menu_action_search_patient: Union[None, QAction] = None
-        self.toolbar_action_search_patient: Union[None, QAction] = None
-        self.menu_action_add_patient: Union[None, QAction] = None
-        self.toolbar_action_add_patient: Union[None, QAction] = None
-        self.menu_action_visit: Union[None, QAction] = None
-        self.toolbar_action_visit: Union[None, QAction] = None
-        self.menu_action_setup: Union[None, QAction] = None
-        self.toolbar_action_setup: Union[None, QAction] = None
-        self.menu_action_about: Union[None, QAction] = None
-        self.toolbar_action_about: Union[None, QAction] = None
+        self.menu_action_login: Optional[QAction] = None
+        self.toolbar_action_login: Optional[QAction] = None
+        self.menu_action_logout: Optional[QAction] = None
+        self.toolbar_action_logout: Optional[QAction] = None
+        self.menu_action_search_patient: Optional[QAction] = None
+        self.toolbar_action_search_patient: Optional[QAction] = None
+        self.menu_action_add_patient: Optional[QAction] = None
+        self.toolbar_action_add_patient: Optional[QAction] = None
+        self.menu_action_visit: Optional[QAction] = None
+        self.toolbar_action_visit: Optional[QAction] = None
+        self.menu_action_setup: Optional[QAction] = None
+        self.toolbar_action_setup: Optional[QAction] = None
+        self.menu_action_about: Optional[QAction] = None
+        self.toolbar_action_about: Optional[QAction] = None
         self.menu_actions: Dict[str, QAction] = dict()
         self.toolbar_actions: Dict[str, QAction] = dict()
         self.shown: bool = False
         # Initialization of the blood pressure reader only if the application is running under Windows
         if platform.system() == 'Windows':  # pragma: no cover
-            self.HWND: Union[voidptr, None] = None
+            self.HWND: Optional[voidptr] = None
             self.watchBPHomeHid = WatchBPHome.WatchBPHomeHid()
             self.watchBPHomeHid.InitWatchBPSDK("as2v1zrZti!pq0+y")
             self.watchBPHomeHid.SpecifiedDeviceRemoved += self.hid_removed
             self.watchBPHomeHid.SpecifiedDeviceArrived += self.hid_arrived
             self.status_hid = 0
         # Settings object to holds the application settings. Is a QT wrapper to be OS independent
-        self.settings: QSettings = QSettings('UPC', 'BLOPUP_WINDOWS_APPLICATION')
-        self.current_server_name: str = self.settings.value('server_name', '', str)
-        self.current_language: str = self.settings.value('language', '', str)
+        self.settings: QSettings = QSettings("UPC", "BLOPUP_WINDOWS_APPLICATION")
+        self.current_server_name: str = self.settings.value("server_name", '', str)
+        self.current_language: str = self.settings.value("language", '', str)
         # Translator and locale initialization
         self.translator: QTranslator = QTranslator()
         if self.current_language == '':
@@ -186,37 +146,23 @@ class MainWindow(QMainWindow):
             QLocale().setDefault(QLocale(self.current_language))
 
     def closeEvent(self, a0: QCloseEvent) -> None:
-        """
-        Before the closing of the application the current application parameters are stored
-
-        :param a0: Event that fired the close function
-        :type a0: QCloseEvent
-        :return: None
-        """
         self.settings.setValue('server_name', self.current_server_name)
         self.settings.setValue('language', self.current_language)
 
     def showEvent(self, a0: QShowEvent) -> None:
-        """
-        When the window is shown the menu, toolbar and status bar are initialized
-
-        :param a0: Event data
-        :type a0: QShowEvent
-        :return: Nothing
-        :rtype: None
-        """
         QMainWindow.showEvent(self, a0)
         if not self.shown:
             self.shown = True
-            # self.label_window_visible.setText('True')
             if platform.system() == 'Windows':  # pragma: no cover
+                # necessary for reading the USB blood pressure device
                 self.HWND = self.effectiveWinId()
                 # self.label_hwnd.setText("{0:08X}".format(int(self.HWND)))
                 i = Int32(self.winId().__int__())
                 p = IntPtr.op_Explicit(i)
                 self.watchBPHomeHid.RegisterHandle(p)
-
-            self.setWindowTitle('BLOPUP')
+            # Main window
+            self.setWindowTitle("BLOPUP")
+            # Toolbar
             self.toolbar_action_login = QAction(
                 QIcon(':/blopup/login.png'),
                 self.tr("Login"),
@@ -292,7 +238,7 @@ class MainWindow(QMainWindow):
             )
             self.toolbar_action_about.triggered.connect(self.about)  # noqa - Bug in PyCharm
             self.tool_bar_main.addAction(self.toolbar_action_about)
-
+            # Menu bar
             self.menu_action_login = QAction(self.tr("Login"), parent=self)
             self.menu_action_login.triggered.connect(self.login)  # noqa - Bug in PyCharm
             self.menu_action_login.setEnabled(self.current_server_name != '')
@@ -366,13 +312,6 @@ class MainWindow(QMainWindow):
 
     # noinspection PyPep8Naming
     def nativeEvent(self, eventType: Union[QByteArray, bytes, bytearray], message: voidptr) -> Tuple[bool, int]:   # pragma: no cover
-        """
-        TODO:
-
-        :param eventType:
-        :param message:
-        :return:
-        """
         # result = QMainWindow.nativeEvent(self, eventType, message)
         try:
             msg = ctypes.wintypes.MSG.from_address(message.__int__())
@@ -390,77 +329,38 @@ class MainWindow(QMainWindow):
             return False, 0
 
     def hid_removed(self, sender, e):  # pragma: no cover
-        """
-        TODO:
-
-        :param sender:
-        :param e:
-        :return:
-        """
         # self.label_status_hid.setText('Disconnected')
         self.status_hid = 2
 
     def hid_arrived(self, sender, e):  # pragma: no cover
-        """
-        TODO:
-
-        :param sender:
-        :param e:
-        :return:
-        """
         # self.label_status_hid.setText('Connected')
         self.status_hid = 1
 
     def on_test_can_communication(self):  # pragma: no cover
-        """
-        TODO:
-
-        :return:
-        """
         if self.watchBPHomeHid.CanCommunication:
             self.label_test_can_communication.setText('True')
         else:
             self.label_test_can_communication.setText('False')
 
     def on_read_id(self):  # pragma: no cover
-        """
-        TODO:
-
-        :return:
-        """
         data = self.watchBPHomeHid.WriteCmd(1)
         out_text = 'No ID defined'
         result, text = WatchBPHome.Decode.DeviceInfoParser.ParseDeviceID(data, out_text)
         self.label_read_id.setText(text)
 
     def on_read_date_time(self):  # pragma: no cover
-        """
-        TODO:
-
-        :return:
-        """
         data = self.watchBPHomeHid.WriteCmd(5)
         out_text = ''
         result, text = WatchBPHome.Decode.DeviceInfoParser.ParseDeviceDateTime(data, out_text)
         self.label_read_date_time.setText(text)
 
     def on_read_version(self):  # pragma: no cover
-        """
-        TODO:
-
-        :return:
-        """
         data = self.watchBPHomeHid.WriteCmd(2)
         out_text = ''
         result, text = WatchBPHome.Decode.DeviceInfoParser.ParseDeviceName(data, out_text)
         self.label_read_version.setText(text)
 
     def on_read_usual_data(self):  # pragma: no cover
-        """
-        TODO:
-
-        :return:
-        """
         data = self.watchBPHomeHid.WriteCmd(3)
         out_usu_data = List[WatchBPHome.Decode.Data](range(10))
         result, data_list = WatchBPHome.Decode.DataParser.ParseUsuData(data, out_usu_data)
@@ -470,11 +370,6 @@ class MainWindow(QMainWindow):
         self.label_read_usual_data.setText(text)
 
     def setup(self) -> None:
-        """
-        Shows the setup dialog and modifies the app parameters accordingly
-
-        :return: None
-        """
         self.dlg = DlgSettings(self)
         dlg: DlgSettings = self.dlg   # Not necessary but useful for type verification
         dlg.server_name = self.current_server_name
@@ -512,12 +407,6 @@ class MainWindow(QMainWindow):
         self.dlg = None
 
     def login(self) -> None:
-        """
-        Displays the Login dialog. Retrieves the user and location information and performs the login procedure with
-        the remote server
-
-        :return: None
-        """
         try:
             self.locations: List[Location] = get_locations(self.current_server_name)
             if self.locations is not None and len(self.locations) > 0:
@@ -633,33 +522,33 @@ class MainWindow(QMainWindow):
             dlg.close()
             self.edit_patient(patient)
 
-    def edit_patient(self, patient: Optional[Patient] = None):
-        if patient is not None:
-            full_patient = get_patient(self.current_server_name, self.current_user.username, self.current_user.password, patient.open_mrs_uuid)
-            if full_patient.identifiers is not None and len(full_patient.identifiers) > 0:
-                for identifier in full_patient.identifiers:
-                    print(str(identifier))
-                    print(str(identifier.patient_identifier_type_uuid))
-                    for key, value in self.current_patient_identifier_types.items():
-                        print(key, str(value.open_mrs_uuid))
-                        if value.open_mrs_uuid == identifier.patient_identifier_type_uuid:
-                            identifier.patient_identifier_type = value
-            visits = get_visit_list(self.current_server_name, self.current_user.username, self.current_user.password, patient.open_mrs_uuid)
-            if visits is not None and len(visits) > 0:
-                for visit in visits:
-                    if visit.location_uuid in self.locations_by_uuid:
-                        visit.location = self.locations_by_uuid[visit.location_uuid]
-                    if visit.visit_type_uuid in self.current_visit_types:
-                        visit.visit_type = self.current_visit_types[visit.visit_type_uuid]
-            full_patient.visits = visits
-
-        else:
-            # TODO: Missatge d'error
-            return
-        self.dlg = DlgPatient(self, self.current_server_name, self.current_user.username, self.current_user.password, full_patient)
-        dlg: DlgPatient = self.dlg  # Not necessary but useful for type verification
-        if dlg.exec() == QDialog.Accepted:
-            pass
+    # def edit_patient(self, patient: Optional[Patient] = None):
+    #     if patient is not None:
+    #         full_patient = get_patient(self.current_server_name, self.current_user.username, self.current_user.password, patient.open_mrs_uuid)
+    #         if full_patient.identifiers is not None and len(full_patient.identifiers) > 0:
+    #             for identifier in full_patient.identifiers:
+    #                 print(str(identifier))
+    #                 print(str(identifier.patient_identifier_type_uuid))
+    #                 for key, value in self.current_patient_identifier_types.items():
+    #                     print(key, str(value.open_mrs_uuid))
+    #                     if value.open_mrs_uuid == identifier.patient_identifier_type_uuid:
+    #                         identifier.patient_identifier_type = value
+    #         visits = get_visit_list(self.current_server_name, self.current_user.username, self.current_user.password, patient.open_mrs_uuid)
+    #         if visits is not None and len(visits) > 0:
+    #             for visit in visits:
+    #                 if visit.location_uuid in self.locations_by_uuid:
+    #                     visit.location = self.locations_by_uuid[visit.location_uuid]
+    #                 if visit.visit_type_uuid in self.current_visit_types:
+    #                     visit.visit_type = self.current_visit_types[visit.visit_type_uuid]
+    #         full_patient.visits = visits
+    #
+    #     else:
+    #         # TODO: Missatge d'error
+    #         return
+    #     self.dlg = DlgPatient(self, self.current_server_name, self.current_user.username, self.current_user.password, full_patient)
+    #     dlg: DlgPatient = self.dlg  # Not necessary but useful for type verification
+    #     if dlg.exec() == QDialog.Accepted:
+    #         pass
 
     def add_patient(self):
         self.edit_patient()
