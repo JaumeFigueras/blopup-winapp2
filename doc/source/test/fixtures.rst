@@ -57,3 +57,11 @@ In this project, fixtures are used extensively to:
 
 This makes tests more concise, easier to read, and less error-prone, while
 ensuring proper setup and cleanup of resources.
+
+Fixtures for BLOPUP
+===================
+
+.. toctree::
+   :maxdepth: 1
+
+   fixtures/ui/application
