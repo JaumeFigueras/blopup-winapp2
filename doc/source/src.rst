@@ -91,9 +91,8 @@ JSON decoder that skip null objects (not null values). To use it as this example
 User Interface
 --------------
 
-.. todo::
-
-   Descripció
+The user interface is build up with **Qt5** and its bindings with Python (PyQt5). Qt is a platform
+independent GUI that can work correctly in Windows, Linux and MacOS.
 
 .. toctree::
    :maxdepth: 2
@@ -103,9 +102,9 @@ User Interface
 OpenMRS Remote API
 ------------------
 
-.. todo::
-
-   Descripció
+The **BLOPUP** project rely with OpenMRS system that works as a server and **BLOPUP Windows Application**
+acts as a client to the OenMRS RESTFul API. This client generates all the API calls necessary for all the
+CRUD tasks needed.
 
 .. toctree::
    :maxdepth: 2
