@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/blopup" >
+        <file alias="login.png">/ui/icons/login-key-128px.png</file>
+        <file alias="logout.png">/ui/icons/logout-lock-128px.png</file>
         <file alias="search_patient_man.png">/ui/icons/search-user-man-128px.png</file>
         <file alias="search_patient_woman.png">/ui/icons/search-user-woman-128px.png</file>
         <file alias="add_patient_man.png">/ui/icons/add-user-man-128px.png</file>
@@ -8,8 +10,6 @@
         <file alias="visit_woman.png">/ui/icons/medical-visit-woman-128px.png</file>
         <file alias="about.png">/ui/icons/about-128px.png</file>
         <file alias="setup.png">/ui/icons/setup-128px.png</file>
-        <file alias="login.png">/ui/icons/login-key-128px.png</file>
-        <file alias="logout.png">/ui/icons/logout-lock-128px.png</file>
         <file alias="how-to-measure.png">/ui/images/how-to-measure.png</file>
         <file alias="algorithm.png">/ui/images/algorithm.png</file>
     </qresource>

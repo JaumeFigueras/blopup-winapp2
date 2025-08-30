@@ -34,7 +34,7 @@ from typing import Dict
 from typing import Any
 from typing import Optional
 
-# from src.ui.about import DlgAbout
+from src.ui.about import DlgAbout
 # from src.ui.settings import DlgSettings
 # from src.ui.patient import DlgPatient
 # from src.ui.login import DlgLogin
@@ -85,7 +85,7 @@ class MainWindow(QMainWindow):
     label_status_network: QLabel
     label_status_user: QLabel
     # Variable to hold Dialogs and Message boxes during its visible state
-    # dlg: Union[DlgPatient, DlgSettings, DlgLogin, DlgSearchPatient, None] = None
+    dlg: Optional[DlgAbout]
     msg: Union[QMessageBox, None] = None
     # Current application user
     # current_user: Union[User, None] = None
@@ -101,6 +101,9 @@ class MainWindow(QMainWindow):
         # Load the main window GUI
         current_dir = pathlib.Path(__file__).parent.resolve()
         uic.loadUi(str(current_dir) + '/ui/main_window.ui', self)
+        # Inits for simple elements
+        self.dlg = None
+        self.msg = None
         # Widgets (menus and toolbar buttons) needed to manage the main GUI
         self.menu_action_login: Optional[QAction] = None
         self.toolbar_action_login: Optional[QAction] = None
@@ -557,8 +560,8 @@ class MainWindow(QMainWindow):
         pass
 
     def about(self):
-        dlg: DlgAbout = DlgAbout(self)
-        dlg.exec()
+        self.dlg: DlgAbout = DlgAbout(self)
+        self.dlg.exec()
 
     def update(self, from_version: Union[str, None] = None, to_version: str = VERSION) -> bool:
         print("Version")

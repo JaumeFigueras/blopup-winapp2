@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>About</class>
+ <widget class="QDialog" name="About">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>519</width>
+    <height>294</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>About</string>
+  </property>
+  <property name="toolTipDuration">
+   <number>-5</number>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="lbl_windows_application">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>BLOPUP Windows Application</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_version">
+       <property name="text">
+        <string>Version 0.9.0</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_icon_attributions">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Icon Attributions:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_icon_1">
+       <property name="text">
+        <string>- Key by Alice Design from &lt;a href=&quot;https://thenounproject.com/browse/icons/term/key/&quot; target=&quot;_blank&quot; title=&quot;Key Icons&quot;&gt;Noun Project&lt;/a&gt;</string>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_icon_2">
+       <property name="text">
+        <string>- Lock by Aleksandr Vector from &lt;a href=&quot;https://thenounproject.com/browse/icons/term/lock/&quot; target=&quot;_blank&quot; title=&quot;Lock Icons&quot;&gt;Noun Project&lt;/a&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_icon_3">
+       <property name="text">
+        <string>- Search User by Wilson Joseph from &lt;a href=&quot;https://thenounproject.com/browse/icons/term/search-user/&quot; target=&quot;_blank&quot; title=&quot;Search User Icons&quot;&gt;Noun Project&lt;/a&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_icon_4">
+       <property name="text">
+        <string>- Add User by Wilson Joseph from &lt;a href=&quot;https://thenounproject.com/browse/icons/term/add-user/&quot; target=&quot;_blank&quot; title=&quot;Add User Icons&quot;&gt;Noun Project&lt;/a&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_icon_5">
+       <property name="text">
+        <string>- Medical appointment by Minh Do from &lt;a href=&quot;https://thenounproject.com/browse/icons/term/medical-appointment/&quot; target=&quot;_blank&quot; title=&quot;medical appointment Icons&quot;&gt;Noun Project&lt;/a&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_icon_6">
+       <property name="text">
+        <string>- About by Adrian Adam from &lt;a href=&quot;https://thenounproject.com/browse/icons/term/about/&quot; target=&quot;_blank&quot; title=&quot;about Icons&quot;&gt;Noun Project&lt;/a&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lbl_icon_7">
+       <property name="text">
+        <string>- Settings by i cons from &lt;a href=&quot;https://thenounproject.com/browse/icons/term/settings/&quot; target=&quot;_blank&quot; title=&quot;Settings Icons&quot;&gt;Noun Project&lt;/a&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QDialogButtonBox" name="buttonbox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonbox</sender>
+   <signal>accepted()</signal>
+   <receiver>About</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonbox</sender>
+   <signal>rejected()</signal>
+   <receiver>About</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
