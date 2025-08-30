@@ -61,7 +61,14 @@ ensuring proper setup and cleanup of resources.
 Fixtures for BLOPUP
 ===================
 
+UI Fixtures
+-----------
+
 .. toctree::
    :maxdepth: 1
 
    fixtures/ui/application
+   fixtures/ui/dialogs/about
+
+OpenMRS Fixtures
+----------------

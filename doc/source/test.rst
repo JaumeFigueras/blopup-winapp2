@@ -52,8 +52,12 @@ ensuring proper setup and cleanup of resources.
 Tests
 -----
 
+Tests UI
+^^^^^^^^
+
 .. toctree::
    :maxdepth: 1
 
    test/main
+   test/ui/about
 
