@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit and UI Test Files &mdash; BLOPUP-WinApp 0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=10f1778b"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="conftest.py" href="test/conftest.html" />
+    <link rel="prev" title="OpenMRS Remote API" href="src/remote_api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BLOPUP-WinApp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.html">Source Files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Unit and UI Test Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-testing">What is testing?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unit-tests">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ui-tests">UI tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conftest-py">conftest.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fixtures">Fixtures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test/conftest.html">conftest.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test/fixtures.html">Fixtures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test/fixtures.html#fixtures-for-blopup">Fixtures for BLOPUP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tests">Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tests-ui">Tests UI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="test/main.html">test_main.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test/ui/about.html">test_about.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BLOPUP-WinApp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Unit and UI Test Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/test.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unit-and-ui-test-files">
+<h1>Unit and UI Test Files<a class="headerlink" href="#unit-and-ui-test-files" title="Link to this heading"></a></h1>
+<p>This section introduces the basics of testing within the project and explains
+how the test files are structured.</p>
+<section id="what-is-testing">
+<h2>What is testing?<a class="headerlink" href="#what-is-testing" title="Link to this heading"></a></h2>
+<p><em>Testing</em> is the process of verifying that an application behaves as expected.
+It helps detect errors early, ensures code quality, and guarantees that future
+changes do not break existing functionality. Tests can be manual (executed by a
+person) or automated (executed by the computer with the help of a testing
+framework such as <code class="docutils literal notranslate"><span class="pre">pytest</span></code>).</p>
+</section>
+<section id="unit-tests">
+<h2>Unit tests<a class="headerlink" href="#unit-tests" title="Link to this heading"></a></h2>
+<p><em>Unit tests</em> validate the behavior of small, isolated units of code, such as
+functions or individual classes. The goal is to confirm that each component
+fulfills its responsibility correctly and consistently. Unit tests are usually
+fast to execute and very useful for detecting regressions.</p>
+</section>
+<section id="ui-tests">
+<h2>UI tests<a class="headerlink" href="#ui-tests" title="Link to this heading"></a></h2>
+<p><em>UI tests</em> (User Interface tests) verify the behavior of the visible parts of
+the application: windows, buttons, menus, and other interactive elements.
+For Qt-based applications, this includes checking that widgets are displayed
+correctly, respond to user actions, and reflect the application’s state
+properly. These tests ensure that the end-user experience is preserved.</p>
+</section>
+<section id="conftest-py">
+<h2>conftest.py<a class="headerlink" href="#conftest-py" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">conftest.py</span></code> file is a special configuration file used by pytest to
+provide shared fixtures and plugins across multiple test modules. It allows
+the project to centralize setup, teardown, and reusable test resources without
+explicit imports in every test file.</p>
+</section>
+<section id="fixtures">
+<h2>Fixtures<a class="headerlink" href="#fixtures" title="Link to this heading"></a></h2>
+<p><em>Fixtures</em> are functions that prepare and provide resources for tests, such as
+isolated <code class="docutils literal notranslate"><span class="pre">QSettings</span></code> objects or running instances of the main application
+window. They help keep tests concise, consistent, and independent, while
+ensuring proper setup and cleanup of resources.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="test/conftest.html">conftest.py</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test/conftest.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test/fixtures.html">Fixtures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test/fixtures.html#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test/fixtures.html#scopes">Scopes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test/fixtures.html#autouse-fixtures">Autouse fixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test/fixtures.html#usage-in-this-project">Usage in this project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test/fixtures.html#fixtures-for-blopup">Fixtures for BLOPUP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test/fixtures.html#ui-fixtures">UI Fixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test/fixtures.html#openmrs-fixtures">OpenMRS Fixtures</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading"></a></h2>
+<section id="tests-ui">
+<h3>Tests UI<a class="headerlink" href="#tests-ui" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="test/main.html">test_main.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test/ui/about.html">test_about.py</a></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="src/remote_api.html" class="btn btn-neutral float-left" title="OpenMRS Remote API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test/conftest.html" class="btn btn-neutral float-right" title="conftest.py" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, BLOPUP.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
