@@ -9,6 +9,11 @@ test_folder = Path(__file__).parent
 project_folder = test_folder.parent
 
 pytest_plugins = [
+    'test.fixtures.data_model.person',
+    'test.fixtures.data_model.person_name',
+    'test.fixtures.data_model.person_address',
+    'test.fixtures.data_model.person_attribute',
+    'test.fixtures.data_model.person_attribute_type',
     # 'test.fixtures.data_model.person',
     # 'test.fixtures.data_model.person_attribute_type',
     # 'test.fixtures.data_model.person_attribute',
@@ -18,7 +23,7 @@ pytest_plugins = [
     # 'test.fixtures.data_model.patient_identifier',
     # 'test.fixtures.database.sqlite',
     'test.fixtures.ui.application',
-    # 'test.fixtures.ui.dialogs',
+    'test.fixtures.ui.dialogs.settings',
     # 'test.fixtures.remote_api.session',
     # 'test.fixtures.remote_api.patient',
     # 'test.fixtures.remote_api.person',

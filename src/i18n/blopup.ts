@@ -92,7 +92,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.py" line="512"/>
+        <location filename="../main.py" line="514"/>
         <source>User:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -107,13 +107,46 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.py" line="422"/>
+        <location filename="../main.py" line="424"/>
         <source>Can&apos;t retrieve Locations from server. Please check your internet connection or the server name in the Settings Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.py" line="424"/>
+        <location filename="../main.py" line="426"/>
         <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Settings</name>
+    <message>
+        <location filename="../ui/settings.ui" line="14"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="32"/>
+        <source>Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="40"/>
+        <source>Server Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="55"/>
+        <source>Locale Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="63"/>
+        <source>Language Selection:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="74"/>
+        <source>System Default</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

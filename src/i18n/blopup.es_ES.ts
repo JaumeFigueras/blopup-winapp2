@@ -92,7 +92,7 @@
         <translation>Cerrar sessión</translation>
     </message>
     <message>
-        <location filename="../main.py" line="512"/>
+        <location filename="../main.py" line="514"/>
         <source>User:</source>
         <translation>Usuario:</translation>
     </message>
@@ -107,14 +107,47 @@
         <translation>Visita un paciente</translation>
     </message>
     <message>
-        <location filename="../main.py" line="422"/>
+        <location filename="../main.py" line="424"/>
         <source>Can&apos;t retrieve Locations from server. Please check your internet connection or the server name in the Settings Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.py" line="424"/>
+        <location filename="../main.py" line="426"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Settings</name>
+    <message>
+        <location filename="../ui/settings.ui" line="14"/>
+        <source>Settings</source>
+        <translation>Configuración</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="32"/>
+        <source>Server</source>
+        <translation>Servidor</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="40"/>
+        <source>Server Name:</source>
+        <translation>Nombre del servidor:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="55"/>
+        <source>Locale Information</source>
+        <translation>Información de la configuración regional</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="63"/>
+        <source>Language Selection:</source>
+        <translation>Selección de idioma:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="74"/>
+        <source>System Default</source>
+        <translation>Por defecto del sistema</translation>
     </message>
 </context>
 </TS>

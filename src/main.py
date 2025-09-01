@@ -35,12 +35,12 @@ from typing import Any
 from typing import Optional
 
 from src.ui.about import DlgAbout
-# from src.ui.settings import DlgSettings
+from src.ui.settings import DlgSettings
 # from src.ui.patient import DlgPatient
 # from src.ui.login import DlgLogin
 # from src.ui.search_patient import DlgSearchPatient
 # from src.data_models.patient import Patient
-# from src.data_models.user import User
+from src.data_model.user import User
 # from src.data_models.location import Location
 # from src.data_models.patient_identifier_type import PatientIdentifierType
 # from src.data_models.patient_identifier import PatientIdentifier
@@ -88,7 +88,7 @@ class MainWindow(QMainWindow):
     dlg: Optional[DlgAbout]
     msg: Union[QMessageBox, None] = None
     # Current application user
-    # current_user: Union[User, None] = None
+    current_user: Optional[User] = None
     # current_location: Union[Location, None] = None
     # current_patient_identifier_types: Union[Dict[str, PatientIdentifierType], None] = None
     # current_visit_types: Union[Dict[str, VisitType], None] = None
@@ -373,13 +373,14 @@ class MainWindow(QMainWindow):
         self.label_read_usual_data.setText(text)
 
     def setup(self) -> None:
-        self.dlg = DlgSettings(self)
-        dlg: DlgSettings = self.dlg   # Not necessary but useful for type verification
-        dlg.server_name = self.current_server_name
-        dlg.language = QLocale().name()
-        if dlg.exec() == QDialog.Accepted:
-            if self.current_server_name != dlg.server_name:
+        self.dlg: Optional[DlgSettings] = DlgSettings(self)
+        self.dlg.server_name = self.current_server_name
+        self.dlg.language = QLocale().name()
+        if self.dlg.exec() == QDialog.Accepted:
+            if self.current_server_name != self.dlg.server_name:
+                # If server has changed the user is invalid
                 self.current_user = None
+                # Disable everything just in case
                 for (key, action) in self.toolbar_actions.items():
                     if key != 'setup' and key != 'about':
                         action.setEnabled(False)
@@ -390,23 +391,24 @@ class MainWindow(QMainWindow):
                         action.setEnabled(False)
                     else:
                         action.setEnabled(True)
-                if dlg.server_name is not None:
-                    self.current_server_name = dlg.server_name
+                # Enable login if there is a server
+                if self.dlg.server_name is not None:
+                    self.current_server_name = self.dlg.server_name
                     self.toolbar_action_login.setEnabled(True)
                     self.menu_action_login.setEnabled(True)
                 else:
                     self.current_server_name = None
-            if dlg.language != QLocale().name():
+            if self.dlg.language != QLocale().name():
                 QCoreApplication.removeTranslator(self.translator)
-                QLocale().setDefault(QLocale(dlg.language))
-                print(QLocale().name())
+                QLocale().setDefault(QLocale(self.dlg.language))
+                # print(QLocale().name())
                 dir_path = os.path.dirname(os.path.realpath(__file__))
-                result = self.translator.load(QLocale(), 'blopup', prefix='.', directory=dir_path+'/i18n', suffix='.qm')
+                _ = self.translator.load(QLocale(), 'blopup', prefix='.', directory=dir_path+'/i18n', suffix='.qm')
                 QCoreApplication.installTranslator(self.translator)
                 self._retranslate_ui()
-                print(QLocale().name())
-                self.current_language = dlg.language
-                print(self.current_language)
+                # print(QLocale().name())
+                self.current_language = self.dlg.language
+                # print(self.current_language)
         self.dlg = None
 
     def login(self) -> None:

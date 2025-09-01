@@ -35,7 +35,7 @@ T = TypeVar("T")
 YieldFixture = Generator[T, None, None]
 
 @pytest.fixture(scope='function')
-def isolated_settings(monkeypatch: pytest.MonkeyPatch) -> YieldFixture[QSettings]:
+def isolated_settings() -> YieldFixture[QSettings]:
     """
     Fixture providing an isolated QSettings instance for testing.
 
@@ -64,21 +64,17 @@ def isolated_settings(monkeypatch: pytest.MonkeyPatch) -> YieldFixture[QSettings
     The fixture clears the settings and removes the temporary file
     during teardown.
     """
+    settings: QSettings = QSettings("UPC", "BLOPUP_WINDOWS_APPLICATION")
+    current_server_name: str = settings.value("server_name", '', str)
+    current_language: str = settings.value("language", '', str)
     # create a temporary file path
-    fd, path = tempfile.mkstemp(suffix=".ini")
-    os.close(fd)  # close the low-level file descriptor, QSettings will manage the file
 
-    test_settings = QSettings(path, QSettings.IniFormat)
-
-    # Monkeypatch so that QSettings() gives our test_settings
-    monkeypatch.setattr("PyQt5.QtCore.QSettings", lambda *a, **kw: test_settings)
-
+    test_settings = QSettings("UPC", "BLOPUP_WINDOWS_APPLICATION")
     yield test_settings
 
-    # cleanup after test
-    test_settings.clear()
-    if os.path.exists(path):
-        os.remove(path)
+
+    settings.setValue('server_name', current_server_name)
+    settings.setValue('language', current_language)
 
 
 @pytest.fixture(scope='function')

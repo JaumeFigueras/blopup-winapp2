@@ -15,7 +15,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt as Qt
 
 from src.main import MainWindow
-# from src.ui.settings import DlgSettings
+from src.ui.settings import DlgSettings
 # from src.ui.login import DlgLogin
 # from src.remote_api.open_mrs_api import LOCATION_LIST
 # from src.remote_api.open_mrs_api import LOGIN
@@ -102,175 +102,110 @@ def test_text_translations_00(isolated_settings: QSettings, app: MainWindow):
     assert app.windowTitle() == 'BLOPUP'
 
 
-# def test_retranslate_01(qtbot: QtBot, app: MainWindow):
-#     """
-#     Tests the change of the language through the setup dialog
-#
-#     :param qtbot: QT Fixture
-#     :type qtbot: QtBot
-#     :param app: Application Main Window
-#     :type app: MainWindow
-#     :return: None
-#     """
-#
-#     def on_timer():
-#         dlg: DlgSettings = app.dlg
-#         qtbot.add_widget(dlg)
-#         qtbot.keyClicks(dlg.combo_box_language, 'ca_ES')
-#         qtbot.mouseClick(dlg.buttonbox.button(QDialogButtonBox.Ok), Qt.LeftButton)
-#
-#     QTimer.singleShot(500, on_timer)
-#     app.toolbar_actions['setup'].trigger()
-#     qtbot.waitUntil(lambda: app.current_language == 'ca_ES')
-#     test_translation_01(qtbot, app)
-#
-#
-# def test_retranslate_02(qtbot: QtBot, app: MainWindow):
-#     """
-#     Tests the change of the language through the setup dialog
-#
-#     :param qtbot: QT Fixture
-#     :type qtbot: QtBot
-#     :param app: Application Main Window
-#     :type app: MainWindow
-#     :return: None
-#     """
-#
-#     def on_timer():
-#         dlg: DlgSettings = app.dlg
-#         qtbot.add_widget(dlg)
-#         qtbot.keyClicks(dlg.combo_box_language, 'es_ES')
-#         qtbot.mouseClick(dlg.buttonbox.button(QDialogButtonBox.Ok), Qt.LeftButton)
-#
-#     QTimer.singleShot(500, on_timer)
-#     app.toolbar_actions['setup'].trigger()
-#     qtbot.waitUntil(lambda: app.current_language == 'es_ES')
-#     test_translation_01(qtbot, app)
-#
-#
-# @pytest.mark.parametrize('app', [{'locale': 'en_US'}, {'locale': 'ca_ES'}, {'locale': 'es_ES'}, {'locale': ''}], indirect=True)
-# def test_translation_01(qtbot: QtBot, app: MainWindow):
-#     """
-#     Tests the translation
-#
-#     :param qtbot: QT Fixture
-#     :type qtbot: QtBot
-#     :param app: Application Main Window
-#     :type app: MainWindow
-#     :return: None
-#     """
-#
-#     locale: str = QLocale().name()
-#     if locale == 'ca_ES':
-#         assert app.windowTitle() == "BLOPUP"
-#         assert app.toolbar_action_setup.text() == "Configuració"
-#         assert app.menu_action_setup.text() == app.toolbar_action_setup.text()
-#         assert app.toolbar_action_login.text() == "Iniciar sessió"
-#         assert app.menu_action_login.text() == app.toolbar_action_login.text()
-#         assert app.toolbar_action_logout.text() == "Tancar sessió"
-#         assert app.menu_action_logout.text() == app.toolbar_action_logout.text()
-#         assert app.toolbar_action_about.text() == "Quant a BLOPUP"
-#         assert app.menu_action_about.text() == app.toolbar_action_about.text()
-#         assert app.toolbar_action_search_patient.text() == "Cerca un pacient"
-#         assert app.menu_action_search_patient.text() == app.toolbar_action_search_patient.text()
-#         assert app.toolbar_action_add_patient.text() == "Afegeix un pacient"
-#         assert app.menu_action_add_patient.text() == app.toolbar_action_add_patient.text()
-#         assert app.toolbar_action_visit.text() == "Visita un pacient"
-#         assert app.menu_action_visit.text() == app.toolbar_action_visit.text()
-#         assert app.label_status_user.text().startswith("Usuari:")
-#     elif locale == 'es_ES':
-#         assert app.windowTitle() == "BLOPUP"
-#         assert app.toolbar_action_setup.text() == "Ajustes"
-#         assert app.menu_action_setup.text() == app.toolbar_action_setup.text()
-#         assert app.toolbar_action_login.text() == "Iniciar sessión"
-#         assert app.menu_action_login.text() == app.toolbar_action_login.text()
-#         assert app.toolbar_action_logout.text() == "Cerrar sessión"
-#         assert app.menu_action_logout.text() == app.toolbar_action_logout.text()
-#         assert app.toolbar_action_about.text() == "Acerca de BLOPUP"
-#         assert app.menu_action_about.text() == app.toolbar_action_about.text()
-#         assert app.toolbar_action_search_patient.text() == "Busca un paciente"
-#         assert app.menu_action_search_patient.text() == app.toolbar_action_search_patient.text()
-#         assert app.toolbar_action_add_patient.text() == "Añade un paciente"
-#         assert app.menu_action_add_patient.text() == app.toolbar_action_add_patient.text()
-#         assert app.toolbar_action_visit.text() == "Visita un paciente"
-#         assert app.menu_action_visit.text() == app.toolbar_action_visit.text()
-#         assert app.label_status_user.text().startswith("Usuario:")
-#     else:
-#         assert app.windowTitle() == "BLOPUP"
-#         assert app.toolbar_action_setup.text() == "Setup"
-#         assert app.menu_action_setup.text() == app.toolbar_action_setup.text()
-#         assert app.toolbar_action_login.text() == "Login"
-#         assert app.menu_action_login.text() == app.toolbar_action_login.text()
-#         assert app.toolbar_action_logout.text() == "Logout"
-#         assert app.menu_action_logout.text() == app.toolbar_action_logout.text()
-#         assert app.toolbar_action_about.text() == "About"
-#         assert app.menu_action_about.text() == app.toolbar_action_about.text()
-#         assert app.toolbar_action_search_patient.text() == "Search Patient"
-#         assert app.menu_action_search_patient.text() == app.toolbar_action_search_patient.text()
-#         assert app.toolbar_action_add_patient.text() == "Add Patient"
-#         assert app.menu_action_add_patient.text() == app.toolbar_action_add_patient.text()
-#         assert app.toolbar_action_visit.text() == "Visit Patient"
-#         assert app.menu_action_visit.text() == app.toolbar_action_visit.text()
-#         assert app.label_status_user.text().startswith("User:")
-#
-#
-# def test_setup_01(qtbot: QtBot, app: MainWindow) -> None:
-#     """
-#     Tests that the server is None
-#
-#     :param qtbot: QT Fixture
-#     :type qtbot: QtBot
-#     :param app: Application Main Window
-#     :type app: MainWindow
-#     :return: None
-#     """
-#
-#     def on_timer():
-#         dlg: DlgSettings = app.dlg
-#         qtbot.add_widget(dlg)
-#         dlg.line_edit_server_name.clear()
-#         qtbot.mouseClick(dlg.buttonbox.button(QDialogButtonBox.Ok), Qt.LeftButton)
-#
-#     QTimer.singleShot(500, on_timer)
-#     app.toolbar_actions['setup'].trigger()
-#     qtbot.waitUntil(lambda: app.current_server_name is None)
-#     for (key, action) in app.toolbar_actions.items():
-#         if key == 'setup' or key == 'about':
-#             assert action.isEnabled()
-#         else:
-#             assert not action.isEnabled()
-#     qtbot.waitUntil(lambda: app.dlg is None)
-#
-#
-# def test_setup_02(qtbot: QtBot, app: MainWindow) -> None:
-#     """
-#     Tests that the server has changed
-#
-#     :param qtbot: QT Fixture
-#     :type qtbot: QtBot
-#     :param app: Application Main Window
-#     :type app: MainWindow
-#     :return: None
-#     """
-#
-#     def on_timer() -> None:
-#         dlg: DlgSettings = app.dlg
-#         qtbot.add_widget(dlg)
-#         dlg.line_edit_server_name.clear()
-#         qtbot.keyClicks(dlg.line_edit_server_name, 'new_server.com')
-#         qtbot.mouseClick(dlg.buttonbox.button(QDialogButtonBox.Ok), Qt.LeftButton)
-#
-#     QTimer.singleShot(500, on_timer)
-#     app.toolbar_actions['setup'].trigger()
-#     qtbot.waitUntil(lambda: app.current_server_name == 'new_server.com')
-#     for (key, action) in app.toolbar_actions.items():
-#         if key == 'setup' or key == 'about' or key == 'login':
-#             assert action.isEnabled()
-#         else:
-#             assert not action.isEnabled()
-#     qtbot.waitUntil(lambda: app.dlg is None)
-#
-#
+@pytest.mark.parametrize('app', [{'locale': 'en_US'}, {'locale': 'ca_ES'}, {'locale': 'es_ES'}, {'locale': ''}], indirect=True)
+def test_settings_and_retranslate_01(qtbot: QtBot, isolated_settings: QSettings, app: MainWindow):
+    """
+    Tests the change of the language through the setup dialog
+
+    :param qtbot: QT Fixture
+    :type qtbot: QtBot
+    :param app: Application Main Window
+    :type app: MainWindow
+    :return: None
+    """
+
+    def on_timer():
+        dlg: DlgSettings = app.dlg
+        qtbot.add_widget(dlg)
+        qtbot.keyClicks(dlg.combo_box_language, 'ca_ES')
+        qtbot.mouseClick(dlg.buttonbox.button(QDialogButtonBox.Ok), Qt.LeftButton)
+
+    QTimer.singleShot(500, on_timer)
+    app.toolbar_actions['setup'].trigger()
+    qtbot.waitUntil(lambda: app.current_language == 'ca_ES')
+    test_text_translations_00(isolated_settings, app)
+
+@pytest.mark.parametrize('app', [{'locale': 'en_US'}, {'locale': 'ca_ES'}, {'locale': 'es_ES'}, {'locale': ''}], indirect=True)
+def test_settings_and_retranslate_02(qtbot: QtBot, isolated_settings: QSettings, app: MainWindow):
+    """
+    Tests the change of the language through the setup dialog
+
+    :param qtbot: QT Fixture
+    :type qtbot: QtBot
+    :param app: Application Main Window
+    :type app: MainWindow
+    :return: None
+    """
+
+    def on_timer():
+        dlg: DlgSettings = app.dlg
+        qtbot.add_widget(dlg)
+        qtbot.keyClicks(dlg.combo_box_language, 'es_ES')
+        qtbot.mouseClick(dlg.buttonbox.button(QDialogButtonBox.Ok), Qt.LeftButton)
+
+    QTimer.singleShot(500, on_timer)
+    app.toolbar_actions['setup'].trigger()
+    qtbot.waitUntil(lambda: app.current_language == 'es_ES')
+    test_text_translations_00(isolated_settings, app)
+
+
+def test_setup_01(qtbot: QtBot, isolated_settings: QSettings, app: MainWindow) -> None:
+    """
+    Tests that the server is None
+
+    :param qtbot: QT Fixture
+    :type qtbot: QtBot
+    :param app: Application Main Window
+    :type app: MainWindow
+    :return: None
+    """
+
+    def on_timer():
+        dlg: DlgSettings = app.dlg
+        qtbot.add_widget(dlg)
+        dlg.line_edit_server_name.clear()
+        qtbot.mouseClick(dlg.buttonbox.button(QDialogButtonBox.Ok), Qt.LeftButton)
+
+    QTimer.singleShot(500, on_timer)
+    app.toolbar_actions['setup'].trigger()
+    qtbot.waitUntil(lambda: app.current_server_name is None)
+    for (key, action) in app.toolbar_actions.items():
+        if key == 'setup' or key == 'about':
+            assert action.isEnabled()
+        else:
+            assert not action.isEnabled()
+    qtbot.waitUntil(lambda: app.dlg is None)
+
+
+def test_setup_02(qtbot: QtBot, isolated_settings: QSettings, app: MainWindow) -> None:
+    """
+    Tests that the server has changed
+
+    :param qtbot: QT Fixture
+    :type qtbot: QtBot
+    :param app: Application Main Window
+    :type app: MainWindow
+    :return: None
+    """
+
+    def on_timer() -> None:
+        dlg: DlgSettings = app.dlg
+        qtbot.add_widget(dlg)
+        dlg.line_edit_server_name.clear()
+        qtbot.keyClicks(dlg.line_edit_server_name, 'new_server.com')
+        qtbot.mouseClick(dlg.buttonbox.button(QDialogButtonBox.Ok), Qt.LeftButton)
+
+    QTimer.singleShot(500, on_timer)
+    app.toolbar_actions['setup'].trigger()
+    qtbot.waitUntil(lambda: app.current_server_name == 'new_server.com')
+    for (key, action) in app.toolbar_actions.items():
+        if key == 'setup' or key == 'about' or key == 'login':
+            assert action.isEnabled()
+        else:
+            assert not action.isEnabled()
+    qtbot.waitUntil(lambda: app.dlg is None)
+
+
 # def test_login_01(qtbot: QtBot, app: MainWindow) -> None:
 #     """
 #     Tests that the locations can't be retrieved and an error message box is displayed
